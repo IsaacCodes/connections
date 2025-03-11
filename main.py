@@ -37,15 +37,15 @@ def main():
     for event in pg.event.get():
       #Quit
       if event.type == pg.QUIT:
-        running = False
+        running, restart = False, False
       #On left click
       if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
         #Checks if restart button is clicked
         if restart_button.rect.collidepoint(pg.mouse.get_pos()):
-          running = False
-          restart = True
+          running, restart = False, True
         if help_ui.button.rect.collidepoint(pg.mouse.get_pos()):
           help_ui.toggle_show()
+
         #Don't activate events when game is over or help_ui is overlayed
         if settings.game_over or help_ui.is_visible:
           break
